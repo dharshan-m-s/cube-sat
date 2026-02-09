@@ -36,6 +36,7 @@ train_data = datagen.flow_from_directory(
     target_size=config.IMG_SIZE,
     batch_size=config.BATCH_SIZE,
     class_mode='categorical',
+    classes=config.CLASSES,
     subset='training'
 )
 
@@ -44,15 +45,16 @@ val_data = datagen.flow_from_directory(
     target_size=config.IMG_SIZE,
     batch_size=config.BATCH_SIZE,
     class_mode='categorical',
+    classes=config.CLASSES,
     subset='validation'
 )
 
 # ---------- MODEL ----------
 
-from tensorflow.keras.applications import MobileNetV2
-from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout
-from tensorflow.keras.models import Model
-from tensorflow.keras.optimizers import Adam
+from keras.applications import MobileNetV2
+from keras.layers import Dense, GlobalAveragePooling2D, Dropout
+from keras.models import Model
+from keras.optimizers import Adam
 
 base = MobileNetV2(
     weights='imagenet',
